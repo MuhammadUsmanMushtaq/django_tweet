@@ -1,35 +1,49 @@
 {% extends "layout.html" %}
+{% load static %}
 {% block title %}All Tweets{% endblock %}
 
 {% block content %}
-<div class='text-center'>
-    <h2>All Tweets</h2>
+<div class='flex justify-center items-center flex-col'>
+    <h2 class='text-3xl'>All Tweets</h2>
     
-    <div class="px-6 pt-4 pb-2">
-        <a href='{% url 'tweet_create' %}' class='w-[120px] p-2 text-center text-white rounded border-1 hover:shadow-lg  bg-cyan-600'>
+    <div class="py-6">
+        <a href='{% url 'tweet_create' %}' class='w-[100px] p-2 text-center text-white rounded border-1 hover:shadow-lg  bg-cyan-600'>
             Create a Tweet
         </a>
-      </div>
-    <div>
+    </div>
+    <div class='flex gap-2 flex-col md:flex-row'>
         {% for tweet in tweets %}
-        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
-            <img class="w-full h-48 object-cover" src="{{tweet.photo.url}}" alt="Card Image">
-            <div class="px-6 py-4">
-              <h2 class="font-bold text-xl mb-2">{{tweet.user.username}}</h2>
-              <p class="text-gray-700 text-base">
-                {{tweet.text}}
-              </p>
+        <div class=" w-full rounded overflow-hidden shadow-lg bg-white p-2">
+            <img class="rounded w-full h-48 object-cover" src="{{tweet.photo.url}}" alt="Card Image">
+            <div class="mt-2 p-2 border-[1px] border-cyan-500 rounded">
+              <div class='flex flex-col gap-4 '>
+                <div class=' flex items-center justify-left gap-2'>
+                  <img class="w-16 rounded-full overflow-hidden border-2 border-cyan-600 shadow-md" src="{% static 'images/user.png' %}" alt="User" class="w-full h-full object-cover">
+                <p class="text-cyan-600">@{{tweet.user.username}}</p>
+                </div>
+                <div>
+                  <p class="text-gray-700 text-base">
+                    {{tweet.text}}
+                  </p>
+              
+                </div>
+              </div>
+              
             </div>
+           <div class='flex items-center justify-between py-2'>
+            <p class=" text-sm italic text-gray-400">Posted on: {{tweet.created_at}}</p>
             {% if tweet.user == user %}
-            <div class=" flex gap-2 justify-center px-6 pt-4 pb-2">
-              <a href='{% url 'tweet_edit' tweet.id %}' class='w-[120px] p-2 text-center text-white rounded border-1 hover:shadow-lg  bg-cyan-600'>
-                Edit
+            <div class=" flex gap-4 ">
+              <a href='{% url 'tweet_edit' tweet.id %}' class='text-gray-400'>
+                <i class="fas fa-pencil-alt w-6 h-6"></i>
               </a>
-              <a href='{% url 'tweet_delete' tweet.id %}' class='w-[120px] p-2 text-center text-white rounded border-1 hover:shadow-lg  bg-cyan-600'>
-                Delete
+      
+              <a href='{% url 'tweet_delete' tweet.id %}' class='text-gray-400' >
+                <i class="fas fa-trash w-6 h-6"></i>
               </a>
             </div>
             {% endif %}
+           </div>
 
           </div>
           
