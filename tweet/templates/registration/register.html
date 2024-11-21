@@ -2,10 +2,21 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
+
+<div class='md:flex md:justify-center md:items-center md:flex-col md:m-auto md:p-20 p-4 border-[1px] border-cyan-600 rounded-lg  md:w-[520px]'>
+    <h2 class='text-center text-3xl pb-4'>Registration</h2>
 <form method='post'>
     {% csrf_token %}
+    {% comment %} User name: {{form.username}}
+    Email: {{form.email}}
+    Password1: {{form.password1}}
+    Password2: {{form.password2}} {% endcomment %}
     {{form.as_p}}
-    <button class='w-[120px] p-2 text-center text-white rounded border-1 hover:shadow-lg  bg-cyan-600'>Register</button>
+    
+    <div class='text-center mt-4'>
+        <button class='w-[120px] p-1 text-center text-white rounded border-1 hover:shadow-lg  bg-cyan-600'>Register</button>
+    </div>
 </form>
-<p>Already have account? <a href="{% url 'login' %}">Login here</a></p>
+</div>
+<p>Already have account? <a href="{% url 'login' %}"><span class='text-blue-700'>Login here</span></a></p>
 {% endblock %}
