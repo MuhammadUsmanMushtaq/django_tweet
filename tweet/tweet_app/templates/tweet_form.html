@@ -3,6 +3,21 @@
 
 {% block content %}
 <div class='text-center'>
-    <h2>Form</h2>
+    <h2>
+        {% if form.instance.pk %}
+        Edit Tweet
+        {% else %}
+        Create Tweet
+        {% endif %}
+    </h2>
+    <form method="post" enctype="multipart/form-data" class=''>
+        {% csrf_token %}
+        {{form.as_p}}
+       
+        <button type="submit" class="px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            Submit
+          </button>
+    </form>
+    <a class='text-blue-600' href="{% url 'tweet_list' %}">Back to Tweet list</a>
 </div>
 {% endblock %}
