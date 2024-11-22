@@ -1,26 +1,32 @@
 {% extends "layout.html" %}
+{% load widget_tweaks %}
 {% block title %}Tweet Form{% endblock %}
 
 {% block content %}
 <div class='flex flex-col justify-center items-center'>
     <h2>
         {% if form.instance.pk %}
-        Edit Tweet
+        <p class='text-2xl py-2 text-center'>Edit Tweet</p>
         {% else %}
         <p class='text-2xl py-2 text-center'>Create Tweet</p>
         {% endif %}
     </h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-      <div class=''>
-        {{form.text}}
-        {{form.photo}}
+      <div class=' flex flex-col'>
+        
+          {% render_field form.text class+="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"%}
+          
+          {% render_field form.photo class+="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" %}
+       
       </div>
        
-        <button type="submit" class='w-[100px] p-2 text-center text-white rounded border-1 hover:shadow-lg  bg-cyan-600 mt-4'>
-            Submit
-        </button>
+       <div class='flex justify-center flex-col items-center'>
+        <button type="submit" class='w-[200px] p-2 text-center text-white rounded border-1 hover:shadow-lg  bg-cyan-600 mt-4'>
+          Submit
+      </button>
+      <a class='text-blue-600 py-2' href="{% url 'tweet_list' %}">Back to Tweet list</a>
+       </div>
     </form>
-    <a class='text-blue-600' href="{% url 'tweet_list' %}">Back to Tweet list</a>
 </div>
 {% endblock %}

@@ -2,15 +2,17 @@
 {% block title %}Delete Tweet{% endblock %}
 
 {% block content %}
-<div class='text-center'>
-    <h2>Are you sure you want to delete this tweet</h2>
+<div class='text-center '>
+    <h2>Are you sure you want to delete this tweet?</h2>
     <form method="post" class=''>
         {% csrf_token %}
         
-        <button class=' p-2 text-center text-white rounded border-[1px] hover:shadow-lg  bg-cyan-600'>
+       <div class='flex justify-center gap-2 pt-4'>
+        <button class='w-[140px] p-2 text-center text-white rounded border-[1px] hover:shadow-lg  bg-cyan-600'>
             Delete
           </button>
-          <a class=' p-2 text-center rounded border-[1px] border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white hover:shadow-lg' href="{% url 'tweet_list' %}">Cancel</a>
+          <a class='block w-[140px] p-2 text-center rounded border-[1px] border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white hover:shadow-lg' href="{% url 'tweet_list' %}">Cancel</a>
+       </div>
     </form>
 </div>
 {% endblock %}
