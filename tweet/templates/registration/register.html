@@ -1,23 +1,51 @@
 {% extends "layout.html" %}
+{% load widget_tweaks %}
 {% block title %}Register{% endblock %}
 
 {% block content %}
-
-<div class='md:flex md:justify-center md:items-center md:flex-col md:m-auto md:p-20 p-4 border-[1px] border-cyan-600 rounded-lg  md:w-[520px]'>
-    <h2 class='text-center text-3xl pb-4'>Registration</h2>
-<form method='post'>
+<form method="post" class="m-auto md:w-[400px]">
+  
     {% csrf_token %}
-    {% comment %} User name: {{form.username}}
-    Email: {{form.email}}
-    Password1: {{form.password1}}
-    Password2: {{form.password2}} {% endcomment %}
-    {{form.as_p}}
     
-    <div class='text-center mt-4'>
-        <button class='w-[120px] p-1 text-center text-white rounded border-1 hover:shadow-lg  bg-cyan-600'>Register</button>
-    </div>
-    <p class='text-center text-sm pt-4'>Already have an account? <a href="{% url 'login' %}"><span class='text-blue-700'>Login here</span></a></p>
-</form>
-</div>
+    <div class="flex flex-col shadow-md bg-white w-full border-[1px] border-cyan-600 rounded-lg p-4 md:p-8">
+        <h2 class="text-3xl text-center py-4 text-cyan-600 font-semibold">Registration</h2>
 
+        <div class="pb-4">
+            <label for="id_username" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
+            {% render_field form.username name="username" id="id_username" class+="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" placeholder="John Doe" required="" %}
+            <p class="text-xs text-gray-500 mt-1">Your unique username for logging in</p>
+        </div>
+
+            <div class="pb-4">
+            <label for="id_email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+            {% render_field form.email name="email" id="id_email" class+="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" placeholder="example@mail.com" required="" %}
+            <p class="text-xs text-gray-500 mt-1">We will send you a confirmation email</p>
+        </div>
+
+        <div class="pb-4">
+            <label for="id_password1" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+            {% render_field form.password1 name="password1" id="id_password1" class+="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" placeholder="password" required="" %}
+            <p class="text-xs text-gray-500 mt-1">Choose a strong password for your account</p>
+        </div>
+
+        <div class="pb-4">
+            <label for="id_password2" class="block mb-2 text-sm font-medium text-gray-900">Confirm Password</label>
+            {% render_field form.password2 name="password2" id="id_password2" class+="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" placeholder="confirm password" required="" %}
+            <p class="text-xs text-gray-500 mt-1">Re-enter your password to confirm</p>
+        </div>
+
+        <div class="py-4 flex flex-col items-center justify-center">
+            <button type="submit" class="w-[220px] p-2 text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300">
+                Register
+            </button>
+        </div>
+
+        <p class="text-xs pt-2 text-center">
+            Already have an account? 
+            <a href="{% url 'login' %}">
+                <span class="text-cyan-600 font-bold hover:text-cyan-700 transition duration-300">Login</span>
+            </a>
+        </p>
+    </div>
+</form>
 {% endblock %}

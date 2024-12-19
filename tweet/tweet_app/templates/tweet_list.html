@@ -11,9 +11,9 @@
             Create a Tweet
         </a>
     </div>
-    <div class='flex gap-2 flex-col md:flex-row'>
+    <div class='flex gap-4 flex-col md:flex-row'>
         {% for tweet in tweets %}
-        <div class=" w-full rounded overflow-hidden shadow-lg bg-white p-2">
+        <div class=" w-full lg:w-[400px] rounded overflow-hidden shadow-lg bg-white p-2">
             <img class="rounded w-full h-48 object-cover" src="{{tweet.photo.url}}" alt="Card Image">
             <div class="mt-2 p-2 border-[1px] border-cyan-500 rounded">
               <div class='flex flex-col gap-4 '>
@@ -50,4 +50,4 @@
         {% endfor %}
     </div>
 </div>
-{% endblock %}
+{% endblock %} 
